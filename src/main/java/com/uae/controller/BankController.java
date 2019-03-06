@@ -4,9 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.uae.model.Customer;
 import com.uae.service.BankServiceImpl;
 
 @RestController
@@ -16,10 +20,11 @@ public class BankController {
 	 @Autowired
 	 BankServiceImpl bankServiceImpl;
 	 
-	@GetMapping("/test")
-	public void getString()
+	
+	@PostMapping("/save")
+	public void putData(@RequestBody Customer customer)
 	{
-		 List<String> players = bankServiceImpl.getAllDetails();
+		 List<String> players = bankServiceImpl.getAllDetails(customer);
 	        for(String player : players)
 	        {
 	            System.out.println("Introducing Barca player => " + player);

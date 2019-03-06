@@ -14,11 +14,14 @@ public class BankServiceImpl {
 	   @Autowired
 	    private BankRepository bankRepository;
 
-	    public List<String> getAllDetails() {
+	    public List<String> getAllDetails(Customer customer) {
 	        List<String> result = new ArrayList<String>();
-	        List<Customer> players = bankRepository.fetchByAllData(1);
+	        List<Customer> players = bankRepository.fetchByAllData(5);
 	     //   Customer value =  bankRepository.findById(1);
 	        System.out.println("----->" +players);
+	        
+	        bankRepository.save(customer);
+	        
 	        for (Customer player : bankRepository.findAll()) {
 	            result.add(player.getName());
 	        }
